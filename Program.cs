@@ -1,11 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
+string? environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+WebApplicationBuilder builder;
+
+if ("Development".Equals(environment)) { //builder.Environment.IsDevelopment()) {
+    builder = WebApplication.CreateBuilder(new WebApplicationOptions() {
+        WebRootPath = "ClientApp/dist"
+    });
+} else {
+    builder = WebApplication.CreateBuilder(args);
+}
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment()) {
-    // app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Home/Error");
     app.UseHsts(); // 30 days    
 } else {
     // var baseDir = app.Environment.ContentRootPath;
