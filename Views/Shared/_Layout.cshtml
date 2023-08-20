@@ -10,5 +10,6 @@
   <main role="main" class="pb-3">
     @RenderBody()
   </main> 
+    @await RenderSectionAsync("Scripts", required: false)  
 </body>
 </html>
