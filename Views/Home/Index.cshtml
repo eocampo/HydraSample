@@ -1,9 +1,25 @@
 @model HomeIndexModel
 @{
+    @* HtmlEncoder = HtmlEncoder.Create(new System.Text.Encodings.Web.TextEncoderSettings {
+        // Set TrimOptions to TrimContent to suppress whitespace between HTML elements
+        TrimOptions = TrimOptions.TrimContent
+    }); *@
 
+    @* HtmlEncoder.Create(new System.Text.Encodings.Web.TextEncoderSettings {
+      // Set TrimOptions to TrimContent to suppress whitespace between HTML elements
+      TrimOptions = System.Xml.Linq.XNode.GetDefaultSettings().TrimOptions
+    }); *@
+
+    @* HtmlEncoder.Create(new System.Text.Encodings.Web.TextEncoderSettings()
+    {
+        // Set the TextEncoderSettings to include all Unicode ranges
+        AllowedRanges = TextEncoderConstants.AllowedRanges
+    }); *@
 }
 
-<div class="container" id="app"><div class="card shadow-2"><div class="card-header"><h1>@Model.Message</h1></div><div class="card-body"><p>Aquí un ejemplo <span>1</span></p><button role="button" class="btn btn-primary text-white">Click me!</button></div></div></div>
+<Partial name="_SampleCard" o />
+
+@* <div class="container" id="app"><div class="card shadow-2"><div class="card-header"><h1>@Model.Message</h1></div><div class="card-body"><p>Aquí un ejemplo <span>1</span></p><button role="button" class="btn btn-primary text-white">Click me!</button></div></div></div> *@
 
 @* <div class="container" id="app">
   <div class="card shadow-2">
